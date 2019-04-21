@@ -1,0 +1,42 @@
+{
+	"name": "curation-gear",
+	"label": "Curation Gear",
+	"description": "Curates a project given a Curator python class",
+	"version": "0.0.14",
+	"inputs": {
+		"api-key": {
+			"base": "api-key"
+		},
+		"curator": {
+			"base": "file",
+			"description": "A python implementation of the Curator class",
+			"type": {
+				"enum": [
+					"source data"
+				]
+			}
+		}
+	},
+	"config": {},
+	"environment": {
+		"GPG_KEY": "0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D",
+		"LANG": "C.UTF-8",
+		"PATH": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+		"PYTHON_PIP_VERSION": "18.1",
+		"PYTHON_VERSION": "3.7.1"
+	},
+	"command": "python run.py",
+	"author": "Harsha Kethineni",
+	"maintainer": "Harsha Kethineni",
+	"cite": "List citations here.",
+	"license": "Other",
+	"source": "",
+	"url": "",
+	"custom": {
+		"gear-builder": {
+			"category": "analysis",
+			"container": "57b577f6f2f83cf9345b59efd2a62646f9c1c5501ad07015a6abd029cd791a28",
+			"image": "gear-builder-lhbhitbrte-20190416155753"
+		}
+	}
+}
