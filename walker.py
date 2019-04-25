@@ -50,14 +50,16 @@ class Walker(abc.ABC):
 
         children += element.files
 
-        if container_type != 'analysis':
-            # children += element.analyses
+        # Make sure that the analyses attribute is a list before iterating
+        if container_type != 'analysis' and isinstance(element.analyses, list):
+            children += [analysis.reload() for analysis in element.analyses]
             if container_type == 'project':
-                children += element.subjects()
+                children += [subject.reload() for subject in element.subjects()]
             elif container_type == 'subject':
-                children += element.sessions()
+                children += [session.reload() for session in element.sessions()]
             elif container_type == 'session':
-                children += element.acquisitions()
+                children += [acquisition.reload() for acquisition in
+                                element.acquisitions()]
 
         log.debug('Children of element %s are:\n%s', element.id, children)
         return children
