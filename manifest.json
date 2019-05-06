@@ -2,7 +2,7 @@
 	"name": "curation-gear",
 	"label": "Curation Gear",
 	"description": "Curates a project given a Curator python class",
-	"version": "0.0.14",
+	"version": "0.0.22",
 	"inputs": {
 		"api-key": {
 			"base": "api-key"
@@ -15,7 +15,23 @@
 					"source data"
 				]
 			}
+		},
+		"additional-input-one": {
+			"base": "file",
+			"description": "An optional input for curation",
+			"optional": true
+		},
+		"additional-input-two": {
+			"base": "file",
+			"description": "An optional input for curation",
+			"optional": true
+		},
+		"additional-input-three": {
+			"base": "file",
+			"description": "An optional input for curation",
+			"optional": true
 		}
+
 	},
 	"config": {},
 	"environment": {

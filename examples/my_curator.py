@@ -1,18 +1,22 @@
 import curator
 import tempfile
 import zipfile
-import pydicom
+import json
+import logging
+
+log = logging.getLogger('my_curator')
+log.setLevel('DEBUG')
 
 SESSION_LABEL_CORRECTION = {
     'screening': 'Screening',
-    'w04': 'Week 04',
-    'w12': 'Week 12',
-    'w16': 'Week 16',
-    'w20': 'Week 20',
-    'w24': 'Week 24',
-    'w28': 'Week 28',
-    'w36': 'Week 36',
-    'w48': 'Week 48',
+    'w04': 'Week_04',
+    'w12': 'Week_12',
+    'w16': 'Week_16',
+    'w20': 'Week_20',
+    'w24': 'Week_24',
+    'w28': 'Week_28',
+    'w36': 'Week_36',
+    'w48': 'Week_48',
     'REV1': 'Relapse_Evaluation_1'
 }
 
@@ -22,7 +26,12 @@ class Curator(curator.Curator):
         super(Curator, self).__init__(depth_first=True)
 
     def curate_project(self, project):
-        pass
+        log.debug('Curating project with %s', self.input_file_one)
+        if self.input_file_one:
+            with open(self.input_file_one, 'r') as fp:
+                updates = json.load(fp)
+            log.debug('Updates are %s', updates)
+            project.update(updates)
 
     def curate_subject(self, subject):
         pass

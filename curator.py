@@ -6,6 +6,10 @@ class Curator(abc.ABC):
     def __init__(self, depth_first=True):
         """An abstract class to be implemented in the input python file"""
         self.depth_first = depth_first
+        self.input_file_one = None
+        self.input_file_two = None
+        self.input_file_three = None
+        self.context = None
 
     def curate_container(self, container):
         """Curates a generic container.

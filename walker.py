@@ -48,7 +48,7 @@ class Walker(abc.ABC):
         if container_type == 'file':
             return children
 
-        children += element.files
+        children += element.files or []
 
         # Make sure that the analyses attribute is a list before iterating
         if container_type != 'analysis' and isinstance(element.analyses, list):

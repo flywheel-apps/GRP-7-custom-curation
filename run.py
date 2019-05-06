@@ -15,9 +15,13 @@ if __name__ == '__main__':
         analysis = gear_context.client.get_analysis(analysis_id)
         curator_path = gear_context.get_input_path('curator')
         curator = utils.load_converter(curator_path).Curator()
+        curator.input_file_one = gear_context.get_input_path('additional-input-one')
+        curator.input_file_two = gear_context.get_input_path('additional-input-two')
+        curator.input_file_three = gear_context.get_input_path('additional-input-three')
 
         project = gear_context.client.get(analysis.parent['id'])
         log.info('Curating project %s', project.label)
+        log.debug('Additional file input: %s', curator.input_file_one)
 
         curate.main(gear_context.client, project, curator)
 
