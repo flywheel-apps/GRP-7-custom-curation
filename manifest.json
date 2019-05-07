@@ -1,57 +1,59 @@
 {
-	"name": "curation-gear",
-	"label": "Curation Gear",
-	"description": "Curates a project given a Curator python class",
-	"version": "0.0.22",
-	"inputs": {
-		"api-key": {
-			"base": "api-key"
-		},
-		"curator": {
-			"base": "file",
-			"description": "A python implementation of the Curator class",
-			"type": {
-				"enum": [
-					"source data"
-				]
-			}
-		},
-		"additional-input-one": {
-			"base": "file",
-			"description": "An optional input for curation",
-			"optional": true
-		},
-		"additional-input-two": {
-			"base": "file",
-			"description": "An optional input for curation",
-			"optional": true
-		},
-		"additional-input-three": {
-			"base": "file",
-			"description": "An optional input for curation",
-			"optional": true
-		}
-
-	},
-	"config": {},
-	"environment": {
-		"GPG_KEY": "0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D",
-		"LANG": "C.UTF-8",
-		"PATH": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-		"PYTHON_PIP_VERSION": "18.1",
-		"PYTHON_VERSION": "3.7.1"
-	},
-	"command": "python run.py",
-	"author": "Harsha Kethineni",
-	"maintainer": "Harsha Kethineni",
-	"cite": "List citations here.",
-	"license": "Other",
-	"source": "",
-	"url": "",
-	"custom": {
-		"gear-builder": {
-			"category": "analysis",
-			"image": "flywheel/custom-curation-gear"
-		}
-	}
+  "name": "curation-gear",
+  "label": "Project Curator",
+  "description": "Curates a project given a python Curator class. Using an implementation of the Curator Class (provided as an input file (e.g., curator.py) this gear is able to curate an entire project, walking down the hierarchy through project, subject, session, acquisition, and file containers.",
+  "version": "0.0.23",
+  "custom": {
+    "gear-builder": {
+      "category": "analysis",
+      "image": "flywheel/custom-curation-gear:0.0.23"
+    },
+    "flywheel": {
+      "suite": "Curation"
+    }
+  },
+  "inputs": {
+    "api-key": {
+      "base": "api-key"
+    },
+    "curator": {
+      "base": "file",
+      "description": "A python implementation of the Curator class",
+      "type": {
+        "enum": [
+          "source data"
+        ]
+      }
+    },
+    "additional-input-one": {
+      "base": "file",
+      "description": "An optional input for curation",
+      "optional": true
+    },
+    "additional-input-two": {
+      "base": "file",
+      "description": "An optional input for curation",
+      "optional": true
+    },
+    "additional-input-three": {
+      "base": "file",
+      "description": "An optional input for curation",
+      "optional": true
+    }
+  },
+  "config": {},
+  "environment": {
+    "GPG_KEY": "0D96DF4D4110E5C43FBFB17F2D347EA6AA65421D",
+    "LANG": "C.UTF-8",
+    "PATH": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "PYTHON_PIP_VERSION": "18.1",
+    "PYTHON_VERSION": "3.7.1"
+  },
+  "command": "python run.py",
+  "author": "Flywheel",
+  "maintainer": "Flywheel <support@flywheel.io>",
+  "cite": "",
+  "license": "Other",
+  "source": "https://github.com/flywheel-apps/GRP-7-custom-curation",
+  "url": "https://github.com/flywheel-apps/GRP-7-custom-curation/blob/master/README.md"
 }

@@ -1,12 +1,12 @@
 ### Generalized Custom Curation Gear
-There are a lot of cases where specific logic must be used to curate a givent project. This custom curation gear is able to take an implementation of the Curator Class and execute it on a project, walking down the hierarchy through project, subject, session, acquisition, and file containers.
+There are a lot of cases where specific logic must be used to curate a given project. This custom curation gear is able to take an implementation of the Curator Class and execute it on a project, walking down the hierarchy through project, subject, session, acquisition, and file containers.
 
 ## The Curator Class
 ### Curate Methods
 In order to implement the Curator Class, a curate method for each container type (excluding groups and collections)
 must be defined. For each container, the method is called `curate_<container_type>`. The method takes the container as an input.
 
-For example, for the project container the curation method is defined as: 
+For example, for the project container the curation method is defined as:
 ``` python
 curate_project(self, project)
 ```
@@ -43,7 +43,7 @@ As shown in the `validate_file` method, the method should return `True` if the c
 ### Input files
 There are many cases where custom curation may require the use of input files. This gear provides mechanisms to utilize _optional_ input files.
 
-NOTES: 
+NOTES:
 1. These input files are optional, thus it is necessary to gracefully handle cases where the input files do not exist.
 2. The gear  allows for the use of up to three input files.
 
@@ -57,5 +57,3 @@ def curate_project(self, project):
 			for line in input_file:
 				project.add_note(line)
 ```
-
-
