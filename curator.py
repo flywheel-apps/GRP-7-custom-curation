@@ -31,6 +31,8 @@ class Curator(abc.ABC):
             return self.curate_session(container)
         elif container_type == 'acquisition':
             return self.curate_acquisition(container)
+        elif container_type == 'file':
+            return self.curate_file(container)
         else:
             return self.curate_analysis(container)
 

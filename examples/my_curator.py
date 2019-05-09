@@ -1,5 +1,7 @@
 import curator
+import os
 import tempfile
+import pydicom
 import zipfile
 import json
 import logging
@@ -48,11 +50,13 @@ class Curator(curator.Curator):
         pass
 
     def curate_file(self, file_):
+        log.info('Curating file %s', file_.name)
         new_classification = self.classifiy_file(file_)
         if new_classification is None:
             return
         else:
-            file_.update
+            log.debug('file %s classification updated to %s', file_.name, new_classification)
+            file_.update_classification(new_classification)
 
     def classifiy_file(self, file_):
         TR = file_.info.get('RepetitionTime')
@@ -66,13 +70,13 @@ class Curator(curator.Curator):
         custom = []
         contrast = False
 
-        if TE < 30 and TR < 800:
+        if TE and TR and TE < 30 and TR < 800:
             measurement = ['T1w']
-        elif (TE > 50 and TR > 2000) and (TI == 0 or TI is None):
+        elif TE and TR and TI and (TE > 50 and TR > 2000) and (TI == 0 or TI is None):
             measurement = ['T2w']
-        elif TE >50 and TR > 8000 and TI > 1500 and TI < 3000:
+        elif TE and TR and TI and TE >50 and TR > 8000 and TI > 1500 and TI < 3000:
             custom = ['FLAIR']
-        elif TE < 50 and TR > 1000:
+        elif TE and TR and TE < 50 and TR > 1000:
             custom = ['PDw']
         else:
             return
@@ -81,22 +85,8 @@ class Curator(curator.Curator):
             if 'T1w' in measurement or 'FLAIR' in custom:
                 contrast =  True
 
-        if file_.zip_member_count < 10:
+        if file_.zip_member_count and file_.zip_member_count < 10:
             intent = ['Localizer']
 
-        if not self.check_consistent_IOP(file_):
-            custom = custom + ['3-Plane']
-
-    def check_consistent_IOP(self, file_):
-        if not file_.type == 'dicom':
-            return True
-        tempfile_path = tempfile.mktemp()
-        file_.download(tempfile_path)
-
-        for image in tempfile_path:
-            dcm = pydicom.dcmread(image)
-            if dcm.ImageOrientationPatient != file_.info.get('ImageOrientationPatient'):
-                return False
-        return True
-
+        # Skip Unique IOP checking for now
 

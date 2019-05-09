@@ -1,5 +1,6 @@
 import flywheel
 import walker
+import utils
 import argparse
 
 
@@ -30,7 +31,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     client = flywheel.Client(args.api_key)
     project = client.lookup(args.path)
-    curator = utils.load_curator(args.curator).Curator()
+    curator = utils.load_converter(args.curator).Curator()
 
     main(client, project, curator)
 
