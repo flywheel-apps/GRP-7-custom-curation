@@ -10,6 +10,7 @@ class Curator(abc.ABC):
         self.input_file_two = None
         self.input_file_three = None
         self.context = None
+        self.dry_run = False
 
     def curate_container(self, container):
         """Curates a generic container.

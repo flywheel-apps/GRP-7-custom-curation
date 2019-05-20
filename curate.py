@@ -26,12 +26,16 @@ if __name__ == '__main__':
                         help='Pass in api key if not logged in with cli')
     parser.add_argument('--curator', '-c', required=True,
                         help='path to curator implementation')
+    parser.add_argument('--dry-run', help='Changes will not be made')
     parser.add_argument('path', help='The resolver path to the project')
 
     args = parser.parse_args()
     client = flywheel.Client(args.api_key)
     project = client.lookup(args.path)
     curator = utils.load_converter(args.curator).Curator()
+
+    if args.dry_run:
+        curator.dry_run = True
 
     main(client, project, curator)
 
