@@ -3,7 +3,7 @@ import logging
 import utils
 
 log = logging.getLogger(__name__)
-log.setLevel('DEBUG')
+log.setLevel('INFO')
 
 
 class Walker(abc.ABC):
