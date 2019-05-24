@@ -2,11 +2,11 @@
   "name": "curation-gear",
   "label": "Project Curator",
   "description": "Curates a project given a python Curator class. Using an implementation of the Curator Class (provided as an input file (e.g., curator.py) this gear is able to curate an entire project, walking down the hierarchy through project, subject, session, acquisition, and file containers.",
-  "version": "0.0.24",
+  "version": "1.0.0",
   "custom": {
     "gear-builder": {
       "category": "analysis",
-      "image": "flywheel/custom-curation-gear:0.0.24"
+      "image": "flywheel/custom-curation-gear:1.0.0"
     },
     "flywheel": {
       "suite": "Curation"
@@ -25,17 +25,17 @@
         ]
       }
     },
-    "additional-input-one": {
+    "additional-input-1": {
       "base": "file",
       "description": "An optional input for curation",
       "optional": true
     },
-    "additional-input-two": {
+    "additional-input-2": {
       "base": "file",
       "description": "An optional input for curation",
       "optional": true
     },
-    "additional-input-three": {
+    "additional-input-3": {
       "base": "file",
       "description": "An optional input for curation",
       "optional": true

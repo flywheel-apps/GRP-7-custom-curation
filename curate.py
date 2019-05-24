@@ -26,9 +26,9 @@ if __name__ == '__main__':
                         help='Pass in api key if not logged in with cli')
     parser.add_argument('--curator', '-c', required=True,
                         help='path to curator implementation')
-    parser.add_argument('--input-file-one', help='Input file one')
-    parser.add_argument('--input-file-two', help='Input file two')
-    parser.add_argument('--input-file-three', help='Input file three')
+    parser.add_argument('--input-file-1', help='Input file one')
+    parser.add_argument('--input-file-2', help='Input file two')
+    parser.add_argument('--input-file-3', help='Input file three')
     parser.add_argument('path', help='The resolver path to the project')
 
     args = parser.parse_args()
@@ -36,9 +36,9 @@ if __name__ == '__main__':
     project = client.lookup(args.path)
     curator = utils.load_converter(args.curator).Curator()
 
-    curator.input_file_one = args.input_file_one
-    curator.input_file_two = args.input_file_two
-    curator.input_file_three = args.input_file_three
+    curator.input_file_one = args.input_file_1
+    curator.input_file_two = args.input_file_2
+    curator.input_file_three = args.input_file_3
 
     main(client, project, curator)
 
