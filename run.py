@@ -19,9 +19,9 @@ if __name__ == '__main__':
         curator.input_file_two = gear_context.get_input_path('additional-input-two')
         curator.input_file_three = gear_context.get_input_path('additional-input-three')
 
-        project = gear_context.client.get(analysis.parent['id'])
-        log.info('Curating project %s', project.label)
+        root_container = gear_context.client.get(analysis.parent['id'])
+        log.info('Curating project %s', root_container.label)
         log.debug('Additional file input: %s', curator.input_file_one)
 
-        curate.main(gear_context.client, project, curator)
+        curate.main(gear_context.client, root_container, curator)
 

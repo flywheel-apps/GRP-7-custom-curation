@@ -4,19 +4,19 @@ import utils
 import argparse
 
 
-def main(client, project, curator):
+def main(client, root_container, curator):
     """Curates a flywheel project using a curator.
 
     Args:
         client (flywheel.Client): The flywheel sdk client
-        project (flywheel.Project): The project to curate
+        root_container (flywheel.Container): The project to curate
         curator (Curator): The curator class to curate the project with
     """
     if curator.depth_first:
-        project_walker = walker.DepthFirstWalker(project)
+        hierarchy_walker = walker.DepthFirstWalker(root_container)
     else:
-        project_walker = walker.BreadthFirstWalker(project)
-    for container in project_walker.walk():
+        hierarchy_walker = walker.BreadthFirstWalker(root_container)
+    for container in hierarchy_walker.walk():
         curator.curate_container(container)
 
 
@@ -33,12 +33,12 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     client = flywheel.Client(args.api_key)
-    project = client.lookup(args.path)
+    root_container = client.lookup(args.path)
     curator = utils.load_converter(args.curator).Curator()
 
     curator.input_file_one = args.input_file_one
     curator.input_file_two = args.input_file_two
     curator.input_file_three = args.input_file_three
 
-    main(client, project, curator)
+    main(client, root_container, curator)
 
