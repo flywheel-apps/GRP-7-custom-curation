@@ -11,6 +11,10 @@ class Curator(abc.ABC):
         self.input_file_three = None
         self.context = None
 
+    def init(self):
+        """Custom initialization to be done before any curation"""
+        pass
+
     def curate_container(self, container):
         """Curates a generic container.
 

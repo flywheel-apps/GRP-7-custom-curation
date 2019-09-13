@@ -12,6 +12,7 @@ def main(client, root_container, curator):
         root_container (flywheel.Container): The project to curate
         curator (Curator): The curator class to curate the project with
     """
+    curate.init()
     if curator.depth_first:
         hierarchy_walker = walker.DepthFirstWalker(root_container)
     else:
