@@ -1,4 +1,4 @@
-flywheel-sdk==6.3.0
+flywheel-sdk~=11.0
 urllib3==1.23
 pydicom
 pandas
